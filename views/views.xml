@@ -1,0 +1,136 @@
+<odoo>
+  <data>
+
+    <record id="view_aula_list" model="ir.ui.view">
+      <field name="name">lab_equipos.aula.list</field>
+      <field name="model">lab_equipos.aula</field>
+      <field name="arch" type="xml">
+        <list string="Aulas">
+          <field name="nombreAula" />
+          <field name="capacidadAula" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_aula_form" model="ir.ui.view">
+      <field name="name">lab_equipos.aula.form</field>
+      <field name="model">lab_equipos.aula</field>
+      <field name="arch" type="xml">
+        <form string="Aula">
+          <header>
+            <button name="%(action_report_aula)d"
+              string="Información del aula"
+              type="action"
+              class="oe_highlight"
+              icon="fa-print" />
+          </header>
+          <sheet>
+            <group>
+              <field name="nombreAula" />
+              <field name="capacidadAula" />
+            </group>
+
+            <notebook>
+              <page string="Equipos Asignados">
+                <field name="equipo_ids" />
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_software_list" model="ir.ui.view">
+      <field name="name">lab_equipos.software.list</field>
+      <field name="model">lab_equipos.software</field>
+      <field name="arch" type="xml">
+        <list string="Software">
+          <field name="nombreSoftware" />
+          <field name="versionSoftware" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_software_form" model="ir.ui.view">
+      <field name="name">lab_equipos.software.form</field>
+      <field name="model">lab_equipos.software</field>
+      <field name="arch" type="xml">
+        <form string="Software">
+          <sheet>
+            <group>
+              <field name="nombreSoftware" />
+              <field name="versionSoftware" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_equipo_list" model="ir.ui.view">
+      <field name="name">lab_equipos.equipo.list</field>
+      <field name="model">lab_equipos.equipo</field>
+      <field name="arch" type="xml">
+        <list string="Equipo">
+          <field name="nombreEquipo" />
+          <field name="tipoEquipo" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_equipo_form" model="ir.ui.view">
+      <field name="name">lab_equipos.equipo.form</field>
+      <field name="model">lab_equipos.equipo</field>
+      <field name="arch" type="xml">
+        <form string="Equipo">
+          <sheet>
+            <group>
+              <field name="nombreEquipo" />
+              <field name="tipoEquipo" />
+            </group>
+            <notebook>
+              <page string="Software">
+                <field name="software_ids" />
+              </page>
+              <page string="Aula">
+                <field name="aula_id" />
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="action_aula" model="ir.actions.act_window">
+      <field name="name">Aulas</field>
+      <field name="res_model">lab_equipos.aula</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_software" model="ir.actions.act_window">
+      <field name="name">Software</field>
+      <field name="res_model">lab_equipos.software</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_equipo" model="ir.actions.act_window">
+      <field name="name">Equipos</field>
+      <field name="res_model">lab_equipos.equipo</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <menuitem id="menu_lab_equipos_root" name="Laboratorio Equipos"
+      web_icon="lab_equipos,static/description/icon.png" />
+
+    <menuitem id="menu_lab_equipos_aulas" name="Aulas" parent="menu_lab_equipos_root"
+      action="action_aula" />
+
+    <menuitem id="menu_lab_equipos_software" name="Software" parent="menu_lab_equipos_root"
+      action="action_software" />
+
+    <menuitem id="menu_lab_equipos_equipos" name="Equipos" parent="menu_lab_equipos_root"
+      action="action_equipo" />
+
+  </data>
+</odoo>

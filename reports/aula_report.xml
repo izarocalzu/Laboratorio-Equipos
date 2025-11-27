@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_report_aula" model="ir.actions.report">
+        <field name="name">Inventario de Aula</field>
+
+         <field name="model">lab_equipos.aula</field>
+
+          <field name="report_type">qweb-pdf</field>
+
+           <field name="report_name">lab_equipos.report_aula</field>
+
+            <field name="report_file">lab_equipos.report_aula</field>
+
+            <field name="binding_model_id" ref="lab_equipos.model_lab_equipos_aula"/>
+             <field name="binding_type">report</field>
+     </record>
+
+     <template id="report_aula">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="aula">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Inventario del Aula: <t t-esc="aula.nombreAula"/></h2>
+
+                        <table class="table table-sm table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del Aula</th>
+                                    <th>Capacidad Máxima</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><t t-esc="aula.nombreAula"/></td>
+                                    <td><t t-esc="aula.capacidadAula"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-sm table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Equipo</th>
+                                    <th>Tipo</th>
+                                    <th>Software Instalado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="aula.equipo_ids" t-as="equipo">
+                                    <tr>
+                                        <td><t t-esc="equipo.nombreEquipo"/></td>
+                                        <td><t t-esc="equipo.tipoEquipo"/></td>
+                                        <td>
+                                            <t t-foreach="equipo.software_ids" t-as="software">
+                                                <t t-esc="software.nombreSoftware"/> 
+                                                <t t-esc="software.versionSoftware"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+      </template>
+</odoo>
