@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_lab_equipos_lab_equipos,lab_equipos.lab_equipos,model_lab_equipos_lab_equipos,base.group_user,1,1,1,1
+access_aula,lab_equipos.aula,model_lab_equipos_aula,base.group_user,1,1,1,1
+access_software,lab_equipos.software,model_lab_equipos_software,base.group_user,1,1,1,1
+access_equipo,lab_equipos.equipo,model_lab_equipos_equipo,base.group_user,1,1,1,1
